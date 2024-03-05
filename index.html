@@ -1,19 +1,34 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Mein Code</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hockey Game</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<script>
-<div id="viewport">
-    <div id="playfield">
-            <div id="player">
-                <div id="player-skin" class="stay-right"></div>
-            </div>
+    <div id="game-container">
+        <!-- Hockey rink -->
+        <div id="rink">
+             <!-- Goal line -->
+            <div id="goal-line"></div>
+            <!-- Icing line -->
+            <div id="icing-line"></div>
+        </div>
+        <!-- Player character -->
+        <div id="player"></div>
+        <!-- Goalie character -->
+        <div id="goalie"></div>
+        <!-- Puck -->
+        <div id="puck"></div>
+        <!-- Score display -->
+        <div id="scoreboard">
+            <span id="player1-score">0</span> - <span id="player2-score">0</span>
+        </div>
     </div>
-    <div id="info">Click to start Game</div>
-</div>
-</script>
+
+    <script src="movement.js"></script>
+    <script src="game.js"></script>
+
 </body>
 </html>
