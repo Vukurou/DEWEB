@@ -1,48 +1,53 @@
-let playerPosition = { x: 50, y: 75 }; // Startpositionen in Prozent
-let goaliePosition = { x: 50, y: 25 };
+let playerPosition = { x: 60, y: 50 }; // Startpositionen in Prozent
+let goaliePosition = { x: 25, y: 50 };
 let puckPosition = { x: 50, y: 50 }; // Puck in der Mitte
 let puckSpeed = { x: 0, y: 0 }; // Anfängliche Geschwindigkeit des Pucks
+let puckControlledBy = null;
 
 // Einfache Repräsentation der Größe von Spieler, Goalie und Puck
-let playerSize = { width: 5, height: 10 }; // Beispielwerte in Prozent
-let goalieSize = { width: 5, height: 10 }; // Beispielwerte
-let puckSize = { width: 2, height: 2 }; // Beispielwerte
+let playerSize = { width: 2, height: 5 }; 
+let goalieSize = { width: 2, height: 5 }; 
+let puckSize = { width: 1, height: 1 }; 
 
 document.addEventListener('keydown', function(event) {
-    if (event.key === 'a') {
-        movePlayer(-5, 0);
-    } else if (event.key === 'd') {
-        movePlayer(5, 0);
-    } else if (event.key === 'w') {
-        movePlayer(0, -5);
-    } else if (event.key === 's') {
-        movePlayer(0, 5);
+    const playerSpeed = 2;
+    const goalieSpeed = 2;
+        // Initialisiere Bewegungsänderungen für Spieler und Goalie
+        let playerDeltaX = 0;
+        let playerDeltaY = 0;
+        let goalieDeltaX = 0;
+        let goalieDeltaY = 0;
+    
+        // Spieler Bewegung
+        if (event.key === 'a') playerDeltaX -= 2; // Links
+        if (event.key === 'd') playerDeltaX += 2; // Rechts
+        if (event.key === 'w') playerDeltaY -= 2; // Oben
+        if (event.key === 's') playerDeltaY += 2; // Unten
+    
+        // Goalie Bewegung
+        if (event.key === 'ArrowLeft') goalieDeltaX -= 2; // Links
+        if (event.key === 'ArrowRight') goalieDeltaX += 2; // Rechts
+        if (event.key === 'ArrowUp') goalieDeltaY -= 2; // Oben
+        if (event.key === 'ArrowDown') goalieDeltaY += 2; // Unten
+    
+        // Bewege Spieler und Goalie basierend auf der gesammelten Delta-Information
+        movePlayer(playerDeltaX, playerDeltaY);
+        moveGoalie(goalieDeltaX, goalieDeltaY);
+    });
+    
+    function movePlayer(deltaX, deltaY) {
+        playerPosition.x = Math.max(0, Math.min(100, playerPosition.x + deltaX));
+        playerPosition.y = Math.max(0, Math.min(100, playerPosition.y + deltaY));
+        updatePosition('player', playerPosition);
+        checkCollisions();
     }
-
-    if (event.key === 'ArrowLeft') {
-        moveGoalie(-5, 0);
-    } else if (event.key === 'ArrowRight') {
-        moveGoalie(5, 0);
-    } else if (event.key === 'ArrowUp') {
-        moveGoalie(0, -5);
-    } else if (event.key === 'ArrowDown') {
-        moveGoalie(0, 5);
+    
+    function moveGoalie(deltaX, deltaY) {
+        goaliePosition.x = Math.max(0, Math.min(100, goaliePosition.x + deltaX));
+        goaliePosition.y = Math.max(0, Math.min(100, goaliePosition.y + deltaY));
+        updatePosition('goalie', goaliePosition);
+        checkCollisions();
     }
-});
-
-function movePlayer(deltaX, deltaY) {
-    playerPosition.x = Math.max(0, Math.min(100, playerPosition.x + deltaX));
-    playerPosition.y = Math.max(0, Math.min(100, playerPosition.y + deltaY));
-    updatePosition('player', playerPosition);
-    checkCollisions();
-}
-
-function moveGoalie(deltaX, deltaY) {
-    goaliePosition.x = Math.max(0, Math.min(100, goaliePosition.x + deltaX));
-    goaliePosition.y = Math.max(0, Math.min(100, goaliePosition.y + deltaY));
-    updatePosition('goalie', goaliePosition);
-    checkCollisions();
-}
 
 function updatePosition(elementId, position) {
     const element = document.getElementById(elementId);
@@ -53,16 +58,20 @@ function updatePosition(elementId, position) {
 function checkCollisions() {
     // Kollision Spieler mit Puck
     if (rectIntersect(playerPosition, puckPosition, playerSize, puckSize)) {
-        puckSpeed.x = 5; // Richtung und Stärke anpassen
-        puckSpeed.y = 0;
-        puckPosition.x += 5; // Verhindere wiederholte Kollisionen
-    }
+            puckControlledBy ="player";
+            puckPosition.x = playerPosition.x + playerSize.width / 2 - puckSize.width / 2;
+            puckPosition.y = playerPosition.y + playerSize.height - 1;
+            puckSpeed.x = 0; 
+            puckSpeed.y = 0;
+        }
 
     // Kollision Goalie mit Puck
     if (rectIntersect(goaliePosition, puckPosition, goalieSize, puckSize)) {
-        puckSpeed.x = -puckSpeed.x * 0.5;
-        puckSpeed.y = -puckSpeed.y * 0.5;
-        puckPosition.x -= 5; // Verhindere wiederholte Kollisionen
+        puckControlledBy = "goalie";
+        puckPosition.x = goaliePosition.x + goalieSize.width / 2 - puckSize.width / 2;
+        puckPosition.x = goaliePosition.y + goalieSize.height - 1;
+        puckSpeed.x = 0;
+        puckSpeed.y = 0;
     }
 
     movePuck();
@@ -71,6 +80,15 @@ function checkCollisions() {
 function movePuck() {
     puckPosition.x += puckSpeed.x;
     puckPosition.y += puckSpeed.y;
+
+    // Check for wall collisions
+    if (puckPosition.x <= 0 || puckPosition.x + puckSize.width >= 100) { // Assuming 100 is the width of the rink
+        puckSpeed.x = -puckSpeed.x; // Reverse direction
+    }
+    if (puckPosition.y <= 0 || puckPosition.y + puckSize.height >= 100) { // Assuming 100 is the height of the rink
+        puckSpeed.y = -puckSpeed.y;
+    }
+
     updatePosition('puck', puckPosition);
 }
 

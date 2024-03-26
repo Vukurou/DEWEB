@@ -25,16 +25,17 @@
 
 #player, #goalie{
     width: 20px;
-    height: 30px;
+    height: 20px;
     border-radius: 5px;
 }
 
 #player {
-    background-position: -5px 0px;
+    background-position: -5px -5px;
 }
 
 #goalie {
-    background-position: -110px -120px;
+    background-position: -110px -125px;
+    transform: scaleX(-1);
 }
 
 #puck {
