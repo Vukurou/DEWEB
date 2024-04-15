@@ -35,19 +35,19 @@ document.addEventListener('keydown', function(event) {
         moveGoalie(goalieDeltaX, goalieDeltaY);
     });
     
-    function movePlayer(deltaX, deltaY) {
+function movePlayer(deltaX, deltaY) {
         playerPosition.x = Math.max(0, Math.min(100, playerPosition.x + deltaX));
         playerPosition.y = Math.max(0, Math.min(100, playerPosition.y + deltaY));
         updatePosition('player', playerPosition);
         checkCollisions();
-    }
+}
     
-    function moveGoalie(deltaX, deltaY) {
+function moveGoalie(deltaX, deltaY) {
         goaliePosition.x = Math.max(0, Math.min(100, goaliePosition.x + deltaX));
         goaliePosition.y = Math.max(0, Math.min(100, goaliePosition.y + deltaY));
         updatePosition('goalie', goaliePosition);
         checkCollisions();
-    }
+}
 
 function updatePosition(elementId, position) {
     const element = document.getElementById(elementId);
@@ -58,22 +58,22 @@ function updatePosition(elementId, position) {
 function checkCollisions() {
     // Kollision Spieler mit Puck
     if (rectIntersect(playerPosition, puckPosition, playerSize, puckSize)) {
-            puckControlledBy ="player";
-            puckPosition.x = playerPosition.x + playerSize.width / 2 - puckSize.width / 2;
-            puckPosition.y = playerPosition.y + playerSize.height - 1;
-            puckSpeed.x = 0; 
-            puckSpeed.y = 0;
-        }
-
-    // Kollision Goalie mit Puck
-    if (rectIntersect(goaliePosition, puckPosition, goalieSize, puckSize)) {
+        puckControlledBy = "player";
+    } else if (rectIntersect(goaliePosition, puckPosition, goalieSize, puckSize)) {
         puckControlledBy = "goalie";
-        puckPosition.x = goaliePosition.x + goalieSize.width / 2 - puckSize.width / 2;
-        puckPosition.x = goaliePosition.y + goalieSize.height - 1;
-        puckSpeed.x = 0;
-        puckSpeed.y = 0;
     }
 
+    // Puck-Position basierend auf der Kontrolle aktualisieren
+    if (puckControlledBy === "player") {
+        // Der Puck "klebt" an der Vorderseite des Spielers
+        puckPosition.x = playerPosition.x + (playerSize.width / 2 - puckSize.width / 2);
+        puckPosition.y = playerPosition.y - puckSize.height; // Puck oberhalb des Spielers positionieren
+    } else if (puckControlledBy === "goalie") {
+        // Der Puck "klebt" an der Vorderseite des Torwarts
+        puckPosition.x = goaliePosition.x + (goalieSize.width / 2 - puckSize.width / 2);
+        puckPosition.y = goaliePosition.y - puckSize.height; // Puck oberhalb des Torwarts positionieren
+    }
+    updatePosition('puck', puckPosition);
     movePuck();
 }
 
