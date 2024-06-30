@@ -47,11 +47,11 @@
 
 #goal {
     position: absolute;
-    top: 50px; 
-    left: 50%; 
+    top: 50px;
+    left: 50%;
     transform: translateX(-50%);
-    width: 200px; 
-    height: 100px; 
+    width: 200px;
+    height: 100px;
     background-color: #000000;
 }
 
@@ -60,21 +60,21 @@
 }
 
 #goal-line {
-    top: 122px; 
-    left: 64px; 
+    top: 122px;
+    left: 64px;
     transform: rotate(90deg);
-    width: 45px; 
-    height: 1px; 
+    width: 45px;
+    height: 1px;
     background-color: #d17e1f;
 }
 
 #icing-line {
-    top: 125px; 
+    top: 125px;
     left: -15px;
     width: 200px;
-    height: 1px; 
+    height: 1px;
     transform: rotate(90deg);
-    background-color: #FF0000; 
+    background-color: #FF0000;
 }
 
 #scoreboard {

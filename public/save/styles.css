@@ -1,0 +1,44 @@
+#game-container {
+    position: relative;
+    width: 800px;
+    height: 500px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+#rink {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('rink.png');
+    background-size: cover;
+}
+
+#player1, #player2, #puck {
+    position: absolute;
+    width: 23px;
+    height: 30px;
+    background-repeat: no-repeat;
+    background-size: 600px 600px;
+    background-color: transparent;
+    background-position: -1px -187px;
+}
+
+#player1 {
+    background-image: url('player.png');
+}
+
+#player2 {
+    background-image: url('player2.png');
+    transform: scaleX(-1);
+}
+
+#puck {
+    width: 10px;
+    height: 10px;
+    background-image: url('player.png');
+    background-position: -325px -400px;
+    border-radius: 50%;
+}

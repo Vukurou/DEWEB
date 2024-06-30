@@ -1,0 +1,72 @@
+#game-container {
+    position: relative;
+    width: 800px;
+    height: 500px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+#rink {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('rink.png');
+    background-size: cover;
+}
+
+.player {
+    position: absolute;
+    width: 25px;
+    height: 30px;
+    background-repeat: no-repeat;
+    background-size: 600px 600px; /* Assuming the size of the player.png */
+    background-color: transparent; /* Ensure background is transparent */
+}
+
+#player1 {
+    background-image: url('player.png');
+    background-position: -1px -187px;
+}
+
+#player2 {
+    background-image: url('player2.png');
+    background-position: -1px -187px;
+    transform: scaleX(-1); /* Flip the player2 horizontally */
+}
+
+#puck {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-image: url('player.png'); /* Assuming the puck image is in the player.png */
+    background-position: -265px -230px; /* Position of the puck in player.png */
+    border-radius: 50%;
+    background-color: black; /* Ensure puck is visible */
+}
+
+#scoreboard {
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 32px;
+    color: #000000; /* Black color */
+    background-color: #FFFFFF; /* Solid white background */
+    padding: 5px;
+    border-radius: 5px;
+}
+
+/* Shooting Animation */
+@keyframes player-shoot {
+    0% { background-position: -1px -187px; }
+    33% { background-position: -89px -187px; }
+    66% { background-position: -57px -187px; }
+    100% { background-position: -1px -187px; }
+}
+
+/* Animation Classes */
+.player-shoot {
+    animation: player-shoot 0.5s steps(3) 1;
+}

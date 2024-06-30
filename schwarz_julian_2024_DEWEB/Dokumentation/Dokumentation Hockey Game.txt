@@ -1,0 +1,40 @@
+
+Hockey GameDEWEB Frühlingssemester 2024Schwarz Julian
+26.6.2024
+
+
+Aufgabenbeschrieb
+Unsere grundlegende Aufgabe war es entweder ein interaktives Bilderbuch zu gestalten oder ein Soccer Game zu programmieren. Ich habe mich nach Absprache mit dem Dozenten dann dazu entschieden mich an einem Eishockeyspiel zu probieren.
+Kurzbeschrieb der Arbeit
+Das vorliegende Projekt ermöglicht das Bewegen von zwei Spielern, das Aufnehmen und Schiessen des Pucks und das dementsprechende Scoring. Nach drei Punkten wird das Spiel zurückgesetzt.
+Ablauf 
+Ursprünglich wollte ich das Spiel als Penaltyspiel mit einem Goalie und einem Spieler gestalten, mit dem Hintergedanken dieses auch noch zu erweitern, um eine richtige Penaltyabfolge zu simulieren. Neben der generellen Gestaltung des Spiels musste ich auch dementsprechend passende Assets zur Verfügung haben, was sich anfangs als sehr schwierig herausstellte. Dahingehend wollte ich sogar anfangen diese Assets selbst zu erstellen, ich fand aber doch nach langer Suche geeignete Assets. Die Erstellung dieser hätte den zeitlichen Rahmen aufgrund fehlender Pixelart-Erfahrung wahrscheinlich sowieso gesprengt.
+Im Laufe der Entwicklung musste ich leider feststellen, dass mir die Zeit nicht reichen wird, um diese Simulation zu erstellen. Des Weiteren kam ich zum Schluss das es angenehmer ist mit zwei Feldspielern gegeneinander anzutreten. Meine verfügbare Zeit wurde zusätzlich durch die Prüfungsvorbereitung eines anderen Moduls stark eingeschränkt. 
+
+
+Das Spiel
+
+So sieht das Projekt aus.
+
+Hier kam Spieler 1 an den Puck und gab anschliessend einen Schuss ab.. 
+
+
+Im Anschluss kam Spieler 2 an den Puck und schoss ein Tor.
+Das Spiel wurde zurückgesetzt und konnte weitergehen. Nachdem der erste Spieler drei Punkte erreicht hat, wird das Spiel vollständig zurückgesetzt.
+Reflexion
+Im Nachhinein muss ich mir eingestehen, dass ich die Erstellung eines Hockeyspiels unterschätzt hatte. Die vielen kleineren Punkte, die funktionieren sollten, um eben eine gute Simulation zu erschaffen, waren dann doch zu viel. Ich konnte leider einige Punkte, gegen Schluss vor allem aus zeitlichen Gründen, nicht so einbauen wie ich es mir erhofft hatte.
+Zum Beispiel auch die Animationen der Spieler, an denen ich lange gepröbelt hatte, aber einfach nicht zum Laufen brachte. Weitere Punkte sind das Schiessen in Laufrichtung, die genauere Kollisionsgestaltung und oder auch die Möglichkeit fürs Checking. Ich habe sehr viel Zeit in der generellen Kollisionsgestaltung verloren, darum hat es zum Schluss nicht gereicht das Schiessen und die Kollisionen richtig zu verbessern. Ich wollte dann nur noch ein funktionierendes Projekt abgeben können. 
+Erklärung über Geistiges Eigentum
+Hiermit erkläre ich, Julian Schwarz, dass ich die vorliegende Arbeit selbstständig und ohne unzulässige Hilfe erstellt habe. 
+
+Kerns, 26.06.2024
+Julian Schwarz
+
+
+Quellenverzeichnis
+ChatGPT. (n.d.). OpenAI. Abgerufen am 26. Juni 2024, von https://chatgpt.com/
+
+The Spriters Resource. (n.d.). Ice Hockey [NES] - Sprites. Abgerufen am 26. Juni 2024, von https://www.spriters-resource.com/nes/icehockey/sheet/27216/
+Hockey Game | Schwarz Julian
+
+
