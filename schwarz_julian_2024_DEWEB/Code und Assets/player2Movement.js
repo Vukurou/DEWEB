@@ -1,8 +1,8 @@
 let player2Velocity = { x: 0, y: 0 };
 const player2MaxVelocity = 1.2; // Max velocity
 const player2MinVelocity = 0.6; // Min velocity
-const player2Acceleration = 0.03; // Reduced acceleration rate
-const player2Deceleration = 0.015; // Reduced deceleration rate
+const player2Acceleration = 0.03;
+const player2Deceleration = 0.015;
 
 function movePlayer2() {
     let deltaX = 0;
@@ -42,7 +42,7 @@ function movePlayer2() {
 }
 
 function shootPuckPlayer2() {
-    if (puckControlledBy === "player2" && keysPressed[' ']) { // Space bar to shoot
+    if (puckControlledBy === "player2" && keysPressed[' ']) {
         puckSpeed = { x: PUCK_SHOT_SPEED, y: 0 };
         puckControlledBy = null;
     }

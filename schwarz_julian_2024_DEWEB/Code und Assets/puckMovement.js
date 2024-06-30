@@ -3,7 +3,6 @@ function movePuck() {
         puckPosition.x += puckSpeed.x * 0.7; // Use 0.7 for speed
         puckPosition.y += puckSpeed.y * 0.7; // Use 0.7 for speed
 
-        // Gradually slow down the puck less aggressively
         puckSpeed.x *= 0.995;
         puckSpeed.y *= 0.995;
 

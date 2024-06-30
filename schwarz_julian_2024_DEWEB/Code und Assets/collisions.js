@@ -3,38 +3,38 @@ function rectIntersect(posA, sizeA, posB, sizeB) {
         posA.y < posB.y + sizeB.height && posA.y + sizeA.height > posB.y;
 }
 
-const dampingFactor = 0.3; // Damping factor to slightly reduce speed after collision
+const dampingFactor = 0.3;
 
 function handleWallCollision() {
     // Check collision with left boundary
     if (puckPosition.x <= BOUNDS_LEFT) {
-        puckPosition.x = BOUNDS_LEFT; // Prevent the puck from going out of bounds
-        if (puckSpeed.x < 0) { // Only reflect if moving towards the boundary
-            puckSpeed.x = -puckSpeed.x * dampingFactor; // Reflect and reduce speed slightly
+        puckPosition.x = BOUNDS_LEFT;
+        if (puckSpeed.x < 0) {
+            puckSpeed.x = -puckSpeed.x * dampingFactor;
         }
     }
 
     // Check collision with right boundary
     if (puckPosition.x + PUCK_WIDTH >= BOUNDS_RIGHT) {
-        puckPosition.x = BOUNDS_RIGHT - PUCK_WIDTH; // Prevent the puck from going out of bounds
-        if (puckSpeed.x > 0) { // Only reflect if moving towards the boundary
-            puckSpeed.x = -puckSpeed.x * dampingFactor; // Reflect and reduce speed slightly
+        puckPosition.x = BOUNDS_RIGHT - PUCK_WIDTH;
+        if (puckSpeed.x > 0) {
+            puckSpeed.x = -puckSpeed.x * dampingFactor;
         }
     }
 
     // Check collision with top boundary
     if (puckPosition.y <= BOUNDS_TOP) {
-        puckPosition.y = BOUNDS_TOP; // Prevent the puck from going out of bounds
-        if (puckSpeed.y < 0) { // Only reflect if moving towards the boundary
-            puckSpeed.y = -puckSpeed.y * dampingFactor; // Reflect and reduce speed slightly
+        puckPosition.y = BOUNDS_TOP;
+        if (puckSpeed.y < 0) {
+            puckSpeed.y = -puckSpeed.y * dampingFactor;
         }
     }
 
     // Check collision with bottom boundary
     if (puckPosition.y + PUCK_HEIGHT >= BOUNDS_BOTTOM) {
-        puckPosition.y = BOUNDS_BOTTOM - PUCK_HEIGHT; // Prevent the puck from going out of bounds
-        if (puckSpeed.y > 0) { // Only reflect if moving towards the boundary
-            puckSpeed.y = -puckSpeed.y * dampingFactor; // Reflect and reduce speed slightly
+        puckPosition.y = BOUNDS_BOTTOM - PUCK_HEIGHT;
+        if (puckSpeed.y > 0) {
+            puckSpeed.y = -puckSpeed.y * dampingFactor;
         }
     }
 
@@ -97,7 +97,6 @@ function handlePlayer2WallCollision() {
 
 function handlePlayer1Player2Collision() {
     if (rectIntersect(player1Position, { width: PLAYER1_WIDTH, height: PLAYER1_HEIGHT }, player2Position, { width: PLAYER2_WIDTH, height: PLAYER2_HEIGHT })) {
-        // Revert to previous position to block movement
         player1Position.x -= player1Velocity.x;
         player1Position.y -= player1Velocity.y;
         player2Position.x -= player2Velocity.x;
@@ -119,10 +118,10 @@ function checkCollisions() {
     }
 
     if (puckControlledBy === "player1") {
-        puckPosition.x = player1Position.x - (PLAYER1_WIDTH / 2 - (PUCK_WIDTH / 4)); // Place the puck in front of player1
+        puckPosition.x = player1Position.x - (PLAYER1_WIDTH / 2 - (PUCK_WIDTH / 4));
         puckPosition.y = player1Position.y + PLAYER1_HEIGHT / 2 + PUCK_HEIGHT / 2;
     } else if (puckControlledBy === "player2") {
-        puckPosition.x = player2Position.x + PLAYER1_WIDTH; // Place the puck in front of player2
+        puckPosition.x = player2Position.x + PLAYER1_WIDTH;
         puckPosition.y = player2Position.y + PLAYER2_HEIGHT / 2 + PUCK_HEIGHT / 2;
     }
 

@@ -61,15 +61,15 @@ function checkWinCondition() {
 }
 
 function resetPuckPosition() {
-    puckPosition = { x: 396, y: 305 }; // Adjusted puck position
-    puckSpeed = { x: 0, y: 0 }; // Stop the puck
-    puckControlledBy = null; // Ensure puck is not controlled by anyone
+    puckPosition = { x: 396, y: 305 };
+    puckSpeed = { x: 0, y: 0 };
+    puckControlledBy = null;
     updatePosition('puck', puckPosition);
 }
 
 function resetPositions() {
-    player1Position = { x: 625, y: 290 }; // Reset player1 position slightly to the left
-    player2Position = { x: 155, y: 290 }; // Reset player2 position
+    player1Position = { x: 625, y: 290 };
+    player2Position = { x: 155, y: 290 };
     resetPuckPosition();
     updatePosition('player1', player1Position);
     updatePosition('player2', player2Position);
@@ -83,7 +83,7 @@ function checkGoal() {
 
     // Player 1 scores
     if (puckPosition.x >= goalLineP2 && puckPosition.y >= goalTop && puckPosition.y <= goalBottom) {
-        if (puckPosition.x - puckSpeed.x < goalLineP2) { // Ensure puck crossed the line from the right direction
+        if (puckPosition.x - puckSpeed.x < goalLineP2) {
             console.log('Player 1 scores!');
             updateScore('player1');
             resetPositions();
@@ -91,7 +91,7 @@ function checkGoal() {
     }
     // Player 2 scores
     else if (puckPosition.x <= goalLineP1 && puckPosition.y >= goalTop && puckPosition.y <= goalBottom) {
-        if (puckPosition.x - puckSpeed.x > goalLineP1) { // Ensure puck crossed the line from the right direction
+        if (puckPosition.x - puckSpeed.x > goalLineP1) {
             console.log('Player 2 scores!');
             updateScore('player2');
             resetPositions();
@@ -117,35 +117,35 @@ document.addEventListener('DOMContentLoaded', function() {
     scoreboard.id = 'scoreboard';
     scoreboard.innerHTML = '<span id="player1-score">0</span> - <span id="player2-score">0</span>';
     scoreboard.style.position = 'absolute';
-    scoreboard.style.top = '20px'; // Adjusted top position
+    scoreboard.style.top = '20px';
     scoreboard.style.left = '50%';
     scoreboard.style.transform = 'translateX(-50%)';
-    scoreboard.style.fontSize = '60px'; // Increased font size
+    scoreboard.style.fontSize = '60px';
     scoreboard.style.color = 'black';
     scoreboard.style.backgroundColor = 'white';
     scoreboard.style.padding = '10px';
     scoreboard.style.borderRadius = '5px';
-    scoreboard.style.zIndex = '1000'; // Ensure it's on top
+    scoreboard.style.zIndex = '1000';
     gameContainer.appendChild(scoreboard);
 
     if (!document.getElementById('player1')) {
         const player1 = document.createElement('div');
         player1.id = 'player1';
-        player1.style.position = 'absolute'; // Ensure correct positioning
+        player1.style.position = 'absolute';
         gameContainer.appendChild(player1);
     }
 
     if (!document.getElementById('player2')) {
         const player2 = document.createElement('div');
         player2.id = 'player2';
-        player2.style.position = 'absolute'; // Ensure correct positioning
+        player2.style.position = 'absolute';
         gameContainer.appendChild(player2);
     }
 
     if (!document.getElementById('puck')) {
         const puck = document.createElement('div');
         puck.id = 'puck';
-        puck.style.position = 'absolute'; // Ensure correct positioning
+        puck.style.position = 'absolute';
         gameContainer.appendChild(puck);
     }
 
